@@ -1,5 +1,5 @@
 # jumpstart-install-script
-Simple bash script to automate installation of WordPress with jumpstart and some of my favorite settings.
+Simple bash script to automate installation of WordPress with jumpstart (https://github.com/elimc/jumpstart) and some of my favorite settings.
 
 # What
 This script downloads and installs the latest core version of WordPress. The installation process dowloads and installs latest version of my jumpstart theme (https://github.com/elimc/jumpstart). It also automates a bunch of other manual things, like deleting the sample page, creating a primary menu, building a list of pages, deleting the `hello dolly` plugin, installing `jetpack`, etc ...
@@ -17,3 +17,11 @@ The Holy Grail is to port this to a Virtual Machine with Vagrant and have a true
 
 # Use
 Personally, I put `wpinstall.sh` in a `Scripts` file and then alias it in `bashrc`, like so: `alias wpinstall="~/Scripts/wpinstall.sh"`. When I want to install WordPress, I use the command line to navigate to the folder I want my WordPress site installed and type `bash wpinstall`. The script will ask you a couple questions, and then it will install everything. At this point, you might want to learn a new hobby ... due to all the newfound free time you have.
+
+
+#Author
+**Eli McMakin**
+
+GitHub: https://github.com/elimc
+
+Web site: www.elimcmakin.com
