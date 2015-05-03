@@ -9,56 +9,76 @@
 ##
 clear
 
-echo ""
+# Set up the shell variables for colors
+# http://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+yellow=`tput setaf 3`;
+green=`tput setaf 2`;
+clear=`tput sgr0`;
+
+# Start it up ...
+echo "${green}"
 echo "============================================"
 echo ""
 echo "Begin install"
 echo ""
 echo "============================================"
-echo ""
-
-# accept user input for the databse name
-echo "Database Name: "
-read -e dbname
-echo ""
-
-# accept user input for the databse user
-echo "Database User: "
-read -e dbuser
-echo ""
-
-# accept user input for the databse user
-echo "Database User: "
-read -e dbpass
-echo ""
+echo "${clear}"
 
 # accept the name of our website
-echo "Site Name: "
+echo "${yellow}Site Name:${clear}"
 read -e sitename
 echo ""
 
 # accept admin username
-echo "Admin Username: "
+echo "${yellow}Admin Username:${clear}"
 read -e wpuser
 echo ""
 
 # accept admin password
-echo "Admin Password: "
+echo "${yellow}Admin Password:${clear}"
 read -e pass
 echo ""
 
 # accept admin email
-echo "Admin email: "
+echo "${yellow}Admin email:${clear}"
 read -e admin_email
 echo ""
 
 # accept a comma separated list of pages
-echo "Add a comma separated list of pages: "
+echo "${yellow}Add a comma separated list of pages that you want in your site:${clear}"
 read -e allpages
 echo ""
 
+# accept user input for the databse name
+echo "${yellow}Database Name:${clear}"
+read -e dbname
+echo ""
+
+# accept user input for the databse user
+echo "${yellow}Database User:${clear}"
+read -e dbuser
+echo ""
+
+# accept user input for the databse password
+echo "${yellow}Database Password:${clear}"
+read -e dbpass
+echo ""
+
+# Set up gulp.js?
+echo "${yellow}Do you want to use npm and gulp? (y/n)${clear}"
+read -e npmandgulp
+echo ""
+
+if [ "$npmandgulp" == y ] ; then
+	# add a simple yes/no confirmation before we proceed
+	echo "${yellow}What is the url path of your install?${clear}"
+	echo "${yellow}Example: 127.0.0.1/my_path/jump_start/ would mean you enter my_path/jumpstart${clear}"
+	read -e urlpath
+	echo ""
+fi
+
 # add a simple yes/no confirmation before we proceed
-echo "Run Install? (y/n)"
+echo "${yellow}Run Install? (y/n)${clear}"
 read -e run
 echo ""
 
@@ -68,6 +88,7 @@ if [ "$run" == n ] ; then
 fi
 
 clear
+echo ""
 
 # download the WordPress core files
 wp core download
@@ -138,15 +159,51 @@ for pageid in $(wp post list --order="ASC" --orderby="date" --post_type=page --p
 	wp menu item add-post main-navigation $pageid
 done
 
-clear
+# Install gulp.js dependencies and starg the gulp server.
+if [ "$npmandgulp" == y ] ; then
 
-echo ""
-echo "================================================================="
-echo ""
-echo "Installation is complete. :)"
-echo ""
-echo "Username: $wpuser"
-echo "Password: $pass"
-echo ""
-echo "================================================================="
-echo ""
+	# Change to the theme that contains gulpfile.js
+	cd wp-content/themes/jumpstart-master
+	echo ""	
+	echo "${yellow}Changing directories to:${clear}"
+	PWD
+	echo ""
+
+	# Install npm dependencies.
+	npm install
+	echo ""
+	echo "${yellow}Finished npm install :)${clear}"
+
+	# Set up path for Browsersync.
+	sed -i ".bak" "s/jump_start/$urlpath/" gulpfile.js;
+	echo "${yellow}Changing URL path to 127.0.0.1/${urlpath} ${clear}"
+	echo ""
+	echo "${green}"
+	echo "================================================================="
+	echo ""
+	echo "Installation is complete. :)"
+	echo ""
+	echo "Username: $wpuser"
+	echo "Password: $pass"
+	echo ""
+	echo "================================================================="
+	echo ""
+
+	# Start the gulp server. Loads site in browser.
+	echo "${yellow}Starting the gulp server.${clear}"
+	echo "${clear}"
+	gulp
+else
+	clear
+
+	echo "${green}"
+	echo "================================================================="
+	echo ""
+	echo "Installation is complete. :)"
+	echo ""
+	echo "Username: $wpuser"
+	echo "Password: $pass"
+	echo ""
+	echo "================================================================="
+	echo "${clear}"
+fi
