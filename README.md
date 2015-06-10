@@ -9,6 +9,9 @@ This script downloads and installs the latest core version of WordPress. The ins
 2. You will need to have bash installed. If you are on a Mac, you already have it.
 3. AMPS stack of some sort. Personally, I use AMMPS. Apache and MySQL needs to be running.
 
+*Optional:*
+If you want to use gulp with your project, you will need to have Node installed.
+
 # Warnings
 This script has not been tested on a PC.
 
