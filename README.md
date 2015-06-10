@@ -16,9 +16,6 @@ If you work with a team of developers, you might want to use Vagrant. In that ca
 # Warnings
 This script has only been tested on a MacOS.
 
-# TODO
-The Holy Grail is to port this to a Virtual Machine with Vagrant and have a true one-command install process.
-
 # Use
 Personally, I put `wpinstall.sh` in my custom `Scripts` directory and then alias it in `bashrc`, like so: `alias wpinstall="~/Scripts/wpinstall.sh"`. When I want to install WordPress, I use the command line to navigate to the folder I want my WordPress site installed and type `bash wpinstall`. The script will ask you a couple questions, and then it will install everything. At this point, you might want to learn a new hobby ... due to all the newfound free time you have.
 
