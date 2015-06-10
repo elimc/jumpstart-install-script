@@ -1,29 +1,32 @@
-# jumpstart-install-script
-Simple bash script to automate installation of WordPress with jumpstart (https://github.com/elimc/jumpstart) and some of my favorite settings.
+# jumpstart Install Script
+Simple bash script to automate installation of WordPress with my [jumpstart theme](https://github.com/elimc/jumpstart) with some of my favorite settings.
 
 # What
-This script downloads and installs the latest core version of WordPress. The installation process dowloads and installs latest version of my jumpstart theme (https://github.com/elimc/jumpstart). It also automates a bunch of other manual things, like deleting the sample page, creating a primary menu, building a list of pages, deleting the `hello dolly` plugin, installing `jetpack`, etc ... Inspiration taken from http://www.ltconsulting.co.uk/automated-wordpress-installation-with-bash-wp-cli/
+This script downloads and installs the latest core version of WordPress. The installation process downloads and installs latest version of my [jumpstart theme](https://github.com/elimc/jumpstart). It also automates a bunch of other manual things, like deleting the sample page, creating a primary menu, building a list of pages, deleting the `hello dolly` plugin, installing `jetpack`, etc ... Inspiration taken from Christopher Geary's [cool script](http://www.ltconsulting.co.uk/automated-wordpress-installation-with-bash-wp-cli/).
+
+# Working with Vagrant
+If you work with a team of developers, you might want to use Vagrant. In that case, check out [jVVV](https://github.com/elimc/jumpstart-vvv).
 
 # Dependencies
-1. You will need to have WP-CLI installed. This is an easy process. Grab it, here: http://wp-cli.org/
-2. You will need to have bash installed. If you are on a Mac, you already have it.
-3. AMPS stack of some sort. Personally, I use AMMPS. Apache and MySQL needs to be running.
-
-*Optional:*
-If you want to use gulp with your project, you will need to have Node installed.
+* You will need to have [WP-CLI](http://wp-cli.org/) installed. This process is so easy, my mother could install it.
+* You will need to have bash installed. If you are on a Mac, you already have it.
+* AMPS stack of some sort. I use [AAMPS](http://www.ampps.com/). Your site won't load without PHP and MySQL. Duh!
+* Optional: If you want to use gulp with your project, you will need to have Node installed.
 
 # Warnings
-This script has not been tested on a PC.
+This script has only been tested on a MacOS.
 
 # TODO
 The Holy Grail is to port this to a Virtual Machine with Vagrant and have a true one-command install process.
 
 # Use
-Personally, I put `wpinstall.sh` in a `Scripts` file and then alias it in `bashrc`, like so: `alias wpinstall="~/Scripts/wpinstall.sh"`. When I want to install WordPress, I use the command line to navigate to the folder I want my WordPress site installed and type `bash wpinstall`. The script will ask you a couple questions, and then it will install everything. At this point, you might want to learn a new hobby ... due to all the newfound free time you have.
+Personally, I put `wpinstall.sh` in my custom `Scripts` directory and then alias it in `bashrc`, like so: `alias wpinstall="~/Scripts/wpinstall.sh"`. When I want to install WordPress, I use the command line to navigate to the folder I want my WordPress site installed and type `bash wpinstall`. The script will ask you a couple questions, and then it will install everything. At this point, you might want to learn a new hobby ... due to all the newfound free time you have.
+
+# Gulp
+The script will ask if you would like to install gulp and npm. If you choose yes, these will be automatically loaded for you and your site will automatically be loaded in a browser, when the install has finished.
 
 #Author
 **Eli McMakin**
 
-GitHub: https://github.com/elimc
-
-Web site: www.elimcmakin.com
+* GitHub: https://github.com/elimc
+* Web site: www.elimcmakin.com
