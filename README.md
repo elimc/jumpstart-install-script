@@ -31,7 +31,7 @@ While the Local URL is great for testing on your host machine, you might want to
 ##### SSH Tunneling
 The default setup also comes with the ability to sync devices that are not on your local WiFi network. It does this via SSH Tunneling. One use-case for this is to test your site on an [IE9 VM](http://dev.modern.ie/tools/vms/). Another use-case would be to show your currently-in-development local site to remote clients. A client in a different country could see updates to a site on your local machine while your talk to them on the phone. They will think you possess magic.
 
-In the image above, the URL for SSH Tunneling is https://tunnel.localtunnel.me. Enter this URL in your IE9 VM, or give it to your client, and blow people's minds.
+In the image above, the URL for SSH Tunneling is https://tunnel.localtunnel.me. Enter this URL in your IE9 VM, or give it to your client, and blow people's minds. NOTE: If you aren't often using SSH Tunneling, you might want to comment it out in your `gulpfile.js`. This will speed up reload time for your Gulp tasks.
 
 #Author
 **Eli McMakin**
