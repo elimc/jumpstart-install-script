@@ -175,7 +175,7 @@ if [ "$npmandgulp" == y ] ; then
 	echo "${yellow}Finished npm install :)${clear}"
 
 	# Set up path for Browsersync.
-	sed -i ".bak" "s/jump_start/$urlpath/" gulpfile.js;
+	sed -i ".bak" "s#jump_start#$urlpath#" gulpfile.js;
 	echo "${yellow}Changing URL path to 127.0.0.1/${urlpath} ${clear}"
 	echo ""
 	echo "${green}"
