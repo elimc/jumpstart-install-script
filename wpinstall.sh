@@ -69,13 +69,10 @@ echo "${yellow}Do you want to use npm and gulp? (y/n)${clear}"
 read -e npmandgulp
 echo ""
 
-if [ "$npmandgulp" == y ] ; then
-	# add a simple yes/no confirmation before we proceed
-	echo "${yellow}What is the url path of your install?${clear}"
-	echo "${yellow}Example: 127.0.0.1/my_path/jump_start/ would mean you enter my_path/jumpstart${clear}"
-	read -e urlpath
-	echo ""
-fi
+echo "${yellow}What is the url path of your install?${clear}"
+echo "${yellow}Example: 127.0.0.1/my_path/jump_start/ would mean you enter my_path/jumpstart${clear}"
+read -e urlpath
+echo ""
 
 # add a simple yes/no confirmation before we proceed
 echo "${yellow}Run Install? (y/n)${clear}"
@@ -113,7 +110,7 @@ currentdirectory=${PWD##*/}
 
 # create database, and install WordPress
 wp db create
-wp core install --url="http://localhost/$currentdirectory" --title="$sitename" --admin_user="$wpuser" --admin_password="$pass" --admin_email="$admin_email"
+wp core install --url="http://127.0.0.1/$urlpath" --title="$sitename" --admin_user="$wpuser" --admin_password="$pass" --admin_email="$admin_email"
 
 # discourage search engines
 wp option update blog_public 0
@@ -138,8 +135,8 @@ done
 wp post delete 1 --force
 
 # set pretty urls
-wp rewrite structure '/%postname%/'
-wp rewrite flush
+wp rewrite structure '/%postname%/' --hard
+wp rewrite flush --hard
 
 # delete hello dolly
 wp plugin delete hello
